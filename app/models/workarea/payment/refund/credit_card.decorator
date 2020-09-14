@@ -19,7 +19,10 @@ module Workarea
           customer_profile_id: customer_profile_id,
           customer_payment_profile_id: customer_payment_profile_id,
           amount: refund_amount,
-          trans_id: transaction.reference.response.params['direct_response']['transaction_id']
+          trans_id: transaction.reference.response.params['direct_response']['transaction_id'],
+          order: {
+            invoice_number: tender.payment.id.first(20) # auth net has max length 20 for this field
+          }
         }
       }
     end
